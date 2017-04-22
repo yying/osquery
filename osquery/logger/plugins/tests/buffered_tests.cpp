@@ -40,7 +40,8 @@ MATCHER_P(MatchesStatus, expected, "") {
     return expected.severity == actual.get<int>("severity") &&
            expected.filename == actual.get<std::string>("filename") &&
            expected.line == actual.get<int>("line") &&
-           expected.message == actual.get<std::string>("message");
+           expected.message == actual.get<std::string>("message") &&
+           getHostIdentifier() == actual.get<std::string>("hostIdentifier");
   } catch (const std::exception& e) {
     return false;
   }

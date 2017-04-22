@@ -34,7 +34,7 @@ class LoggerTests : public testing::Test {
     log_lines.clear();
     status_messages.clear();
     statuses_logged = 0;
-    last_status = {O_INFO, "", -1, "", "host", "cal_time", 0};
+    last_status = {O_INFO, "", -1, "", "cal_time", 0};
   }
 
   void TearDown() override {
