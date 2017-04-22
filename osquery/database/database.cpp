@@ -562,6 +562,9 @@ Status getDatabaseValue(const std::string& domain,
     return status;
   } else {
     auto plugin = getDatabasePlugin();
+    if (plugin == nullptr) {
+      return Status(-1, "Database not ready");
+    }
     return plugin->get(domain, key, value);
   }
 }
@@ -582,6 +585,9 @@ Status setDatabaseValue(const std::string& domain,
     return Registry::call("database", request);
   } else {
     auto plugin = getDatabasePlugin();
+    if (plugin == nullptr) {
+      return Status(-1, "Database not ready");
+    }
     return plugin->put(domain, key, value);
   }
 }
@@ -600,6 +606,9 @@ Status deleteDatabaseValue(const std::string& domain, const std::string& key) {
     return Registry::call("database", request);
   } else {
     auto plugin = getDatabasePlugin();
+    if (plugin == nullptr) {
+      return Status(-1, "Database not ready");
+    }
     return plugin->remove(domain, key);
   }
 }
@@ -622,6 +631,9 @@ Status deleteDatabaseRange(const std::string& domain,
     return Registry::call("database", request);
   } else {
     auto plugin = getDatabasePlugin();
+    if (plugin == nullptr) {
+      return Status(-1, "Database not ready");
+    }
     return plugin->removeRange(domain, low, high);
   }
 }
@@ -660,6 +672,9 @@ Status scanDatabaseKeys(const std::string& domain,
     return status;
   } else {
     auto plugin = getDatabasePlugin();
+    if (plugin == nullptr) {
+      return Status(-1, "Database not ready");
+    }
     return plugin->scan(domain, keys, prefix, max);
   }
 }
